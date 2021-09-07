@@ -1,6 +1,6 @@
 import { Observable } from "domodel"
 
-import Tabs from "../src/object/tabs.js"
+import { Tabs } from "../index.js"
 
 export function instance(test) {
 	test.expect(5)

@@ -5,8 +5,7 @@ import TabModel from "../src/model/tab.js"
 
 import TabBinding from "../src/model/tab.binding.js"
 
-import Tab from "../src/object/tab.js"
-import Tabs from "../src/object/tabs.js"
+import { Tab, Tabs } from "../index.js"
 
 const virtualDOM = new JSDOM(``)
 const window = virtualDOM.window

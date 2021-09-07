@@ -5,8 +5,7 @@ import IndicatorModel from "../src/model/indicator.js"
 
 import IndicatorBinding from "../src/model/indicator.binding.js"
 
-import Tab from "../src/object/tab.js"
-import Tabs from "../src/object/tabs.js"
+import { Tab, Tabs } from "../index.js"
 
 const virtualDOM = new JSDOM(``)
 const window = virtualDOM.window
