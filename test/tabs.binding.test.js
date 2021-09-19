@@ -1,3 +1,4 @@
+import assert from "assert"
 import { JSDOM } from "jsdom"
 import { Core, Binding } from "domodel"
 
@@ -16,76 +17,70 @@ let rootBinding
 
 const tabModel = { tagName: "div", id: "myTab" }
 
-export function setUp(callback) {
-	rootBinding = new Binding()
-	Core.run(RootModel, { parentNode: document.body, binding: rootBinding })
-	callback()
-}
+describe("tabs.binding", () => {
 
-export function tearDown(callback) {
-	rootBinding.remove()
-	callback()
-}
+	beforeEach(() => {
+		rootBinding = new Binding()
+		Core.run(RootModel, { parentNode: document.body, binding: rootBinding })
+	})
 
-export function instance(test) {
-	test.expect(1)
-	test.ok(new TabsBinding() instanceof Binding)
-	test.done()
-}
+	afterEach(() => {
+		rootBinding.remove()
+	})
 
-export function onCreated(test) {
-	test.expect(14)
-	const tab = new Tab("test", tabModel, Binding)
-	const tab_ = new Tab("cxzcxz", tabModel, Binding)
-	const tabs = new Tabs([ tab, tab_ ])
-	const binding = new TabsBinding({ tabs })
-	rootBinding.run(TabsModel, { binding })
-	test.strictEqual(binding.identifier.indicators.children[0].classList.contains("indicator"), true)
-	test.strictEqual(binding.identifier.indicators.children[0].textContent, "test")
-	test.strictEqual(binding.identifier.indicators.children[1].classList.contains("indicator"), true)
-	test.strictEqual(binding.identifier.indicators.children[1].textContent, "cxzcxz")
-	test.strictEqual(binding.identifier.tabs.children[0].classList.contains("tab"), true)
-	test.strictEqual(binding.identifier.tabs.children[1].classList.contains("tab"), true)
-	test.strictEqual(binding._children.length, 4)
-	test.strictEqual(tab.active, false)
-	test.strictEqual(tab_.active, false)
-	test.ok(binding._children[0] instanceof Binding)
-	test.ok(binding._children[1] instanceof Binding)
-	test.ok(binding._children[2] instanceof Binding)
-	test.ok(binding._children[3] instanceof Binding)
-	test.strictEqual(binding._parent, rootBinding)
-	test.done()
-}
+	it("instance", () => {
+		assert.ok(new TabsBinding() instanceof Binding)
+	})
 
-export function tabSet(test) {
-	test.expect(4)
-	const tab = new Tab("test", tabModel, Binding)
-	const tab_ = new Tab("cxzcxz", tabModel, Binding)
-	const tabs = new Tabs([ tab, tab_ ])
-	const binding = new TabsBinding({ tabs })
-	rootBinding.run(TabsModel, { binding })
-	test.strictEqual(tab.active, false)
-	tabs.emit("tab set", "test")
-	test.strictEqual(tab.active, true)
-	tabs.emit("tab set", "cxzcxz")
-	test.strictEqual(tab.active, false)
-	test.strictEqual(tab_.active, true)
-	test.done()
-}
+	it("onCreated", () => {
+		const tab = new Tab("test", tabModel, Binding)
+		const tab_ = new Tab("cxzcxz", tabModel, Binding)
+		const tabs = new Tabs([ tab, tab_ ])
+		const binding = new TabsBinding({ tabs })
+		rootBinding.run(TabsModel, { binding })
+		assert.strictEqual(binding.identifier.indicators.children[0].classList.contains("indicator"), true)
+		assert.strictEqual(binding.identifier.indicators.children[0].textContent, "test")
+		assert.strictEqual(binding.identifier.indicators.children[1].classList.contains("indicator"), true)
+		assert.strictEqual(binding.identifier.indicators.children[1].textContent, "cxzcxz")
+		assert.strictEqual(binding.identifier.tabs.children[0].classList.contains("tab"), true)
+		assert.strictEqual(binding.identifier.tabs.children[1].classList.contains("tab"), true)
+		assert.strictEqual(binding._children.length, 4)
+		assert.strictEqual(tab.active, false)
+		assert.strictEqual(tab_.active, false)
+		assert.ok(binding._children[0] instanceof Binding)
+		assert.ok(binding._children[1] instanceof Binding)
+		assert.ok(binding._children[2] instanceof Binding)
+		assert.ok(binding._children[3] instanceof Binding)
+		assert.strictEqual(binding._parent, rootBinding)
+	})
 
-export function tabUnSet(test) {
-	test.expect(5)
-	const tab = new Tab("test", tabModel, Binding)
-	const tab_ = new Tab("cxzcxz", tabModel, Binding)
-	const tabs = new Tabs([ tab, tab_ ])
-	const binding = new TabsBinding({ tabs })
-	rootBinding.run(TabsModel, { binding })
-	test.strictEqual(tab.active, false)
-	tabs.emit("tab set", "test")
-	test.strictEqual(tab.active, true)
-	test.strictEqual(tab_.active, false)
-	tabs.emit("tab unset", "test")
-	test.strictEqual(tab.active, false)
-	test.strictEqual(tab_.active, false)
-	test.done()
-}
+	it("tabSet", () => {
+		const tab = new Tab("test", tabModel, Binding)
+		const tab_ = new Tab("cxzcxz", tabModel, Binding)
+		const tabs = new Tabs([ tab, tab_ ])
+		const binding = new TabsBinding({ tabs })
+		rootBinding.run(TabsModel, { binding })
+		assert.strictEqual(tab.active, false)
+		tabs.emit("tab set", "test")
+		assert.strictEqual(tab.active, true)
+		tabs.emit("tab set", "cxzcxz")
+		assert.strictEqual(tab.active, false)
+		assert.strictEqual(tab_.active, true)
+	})
+
+	it("tabUnSet", () => {
+		const tab = new Tab("test", tabModel, Binding)
+		const tab_ = new Tab("cxzcxz", tabModel, Binding)
+		const tabs = new Tabs([ tab, tab_ ])
+		const binding = new TabsBinding({ tabs })
+		rootBinding.run(TabsModel, { binding })
+		assert.strictEqual(tab.active, false)
+		tabs.emit("tab set", "test")
+		assert.strictEqual(tab.active, true)
+		assert.strictEqual(tab_.active, false)
+		tabs.emit("tab unset", "test")
+		assert.strictEqual(tab.active, false)
+		assert.strictEqual(tab_.active, false)
+	})
+
+})

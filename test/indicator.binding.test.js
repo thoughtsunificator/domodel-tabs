@@ -1,3 +1,4 @@
+import assert from "assert"
 import { JSDOM } from "jsdom"
 import { Core, Binding } from "domodel"
 
@@ -14,68 +15,61 @@ const { document } = window
 const RootModel = { tagName: "div" }
 let rootBinding
 
-export function setUp(callback) {
-	rootBinding = new Binding()
-	Core.run(RootModel, { parentNode: document.body, binding: rootBinding })
-	callback()
-}
+describe("indicator.binding", () => {
 
-export function tearDown(callback) {
-	rootBinding.remove()
-	callback()
-}
-
-export function instance(test) {
-	test.expect(1)
-	test.ok(new IndicatorBinding() instanceof Binding)
-	test.done()
-}
-
-export function onCreated(test) {
-	test.expect(3)
-	const tab = new Tab("Test")
-	const tabs = new Tabs([ tab ])
-	const binding = new IndicatorBinding({ tab, tabs })
-	rootBinding.run(IndicatorModel(tab), { binding })
-	test.strictEqual(binding.root.classList.contains("indicator"), true)
-	test.strictEqual(binding.root.textContent, "Test")
-	test.strictEqual(binding.root.classList.contains("active"), false)
-	test.done()
-}
-
-export function set(test) {
-	test.expect(1)
-	const tab = new Tab("Test")
-	const tabs = new Tabs([ tab ])
-	const binding = new IndicatorBinding({ tab, tabs })
-	rootBinding.run(IndicatorModel, { binding })
-	tab.emit("set")
-	test.strictEqual(binding.root.classList.contains("active"), true)
-	test.done()
-}
-
-export function unSet(test) {
-	test.expect(2)
-	const tab = new Tab("Test")
-	const tabs = new Tabs([ tab ])
-	const binding = new IndicatorBinding({ tab, tabs })
-	rootBinding.run(IndicatorModel, { binding })
-	binding.root.classList.add("active")
-	test.strictEqual(binding.root.classList.contains("active"), true)
-	tab.emit("unset")
-	test.strictEqual(binding.root.classList.contains("active"), false)
-	test.done()
-}
-
-export function click(test) {
-	test.expect(1)
-	const tab = new Tab("Test")
-	const tabs = new Tabs([ tab ])
-	const binding = new IndicatorBinding({ tab, tabs })
-	rootBinding.run(IndicatorModel, { binding })
-	tabs.listen("tab set", name => {
-		test.strictEqual(name, tab.name)
-		test.done()
+	beforeEach(() => {
+		rootBinding = new Binding()
+		Core.run(RootModel, { parentNode: document.body, binding: rootBinding })
 	})
-	binding.root.dispatchEvent(new window.Event("click"))
-}
+
+	afterEach(() => {
+		rootBinding.remove()
+	})
+
+	it("instance", () => {
+		assert.ok(new IndicatorBinding() instanceof Binding)
+	})
+
+	it("onCreated", () => {
+		const tab = new Tab("Test")
+		const tabs = new Tabs([ tab ])
+		const binding = new IndicatorBinding({ tab, tabs })
+		rootBinding.run(IndicatorModel(tab), { binding })
+		assert.strictEqual(binding.root.classList.contains("indicator"), true)
+		assert.strictEqual(binding.root.textContent, "Test")
+		assert.strictEqual(binding.root.classList.contains("active"), false)
+	})
+
+	it("set", () => {
+		const tab = new Tab("Test")
+		const tabs = new Tabs([ tab ])
+		const binding = new IndicatorBinding({ tab, tabs })
+		rootBinding.run(IndicatorModel, { binding })
+		tab.emit("set")
+		assert.strictEqual(binding.root.classList.contains("active"), true)
+	})
+
+	it("unSet", () => {
+		const tab = new Tab("Test")
+		const tabs = new Tabs([ tab ])
+		const binding = new IndicatorBinding({ tab, tabs })
+		rootBinding.run(IndicatorModel, { binding })
+		binding.root.classList.add("active")
+		assert.strictEqual(binding.root.classList.contains("active"), true)
+		tab.emit("unset")
+		assert.strictEqual(binding.root.classList.contains("active"), false)
+	})
+
+	it("click", (done) => {
+		const tab = new Tab("Test")
+		const tabs = new Tabs([ tab ])
+		const binding = new IndicatorBinding({ tab, tabs })
+		rootBinding.run(IndicatorModel, { binding })
+		tabs.listen("tab set", name => {
+			assert.strictEqual(name, tab.name)
+			done()
+		})
+		binding.root.dispatchEvent(new window.Event("click"))
+	})
+
+})
