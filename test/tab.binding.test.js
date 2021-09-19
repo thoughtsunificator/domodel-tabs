@@ -33,11 +33,12 @@ describe("tab.binding", () => {
 	})
 
 	it("onCreated", () => {
-		const tab = new Tab("Test", tabModel, Binding)
+		const tab = new Tab("Test", tabModel, Binding, { dusiadygsads: 2 })
 		const tabs = new Tabs([ tab ])
 		const binding = new TabBinding({ tab, tabs })
 		rootBinding.run(TabModel, { binding })
 		assert.strictEqual(tab.active, false)
+		assert.strictEqual(binding._children[0].properties.dusiadygsads, 2)
 		assert.strictEqual(binding.root.classList.contains("tab"), true)
 		assert.strictEqual(binding.root.classList.contains("active"), false)
 		assert.strictEqual(binding.root.children[0].id, "myTab")

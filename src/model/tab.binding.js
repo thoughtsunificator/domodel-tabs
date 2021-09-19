@@ -14,7 +14,7 @@ export default class extends Binding {
 			this.root.classList.remove("active")
 		})
 
-		this.run(tab.model, { binding: new tab.binding() })
+		this.run(tab.model, { binding: new tab.binding(tab.properties) })
 
 	}
 
