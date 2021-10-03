@@ -1,4 +1,4 @@
-# domodel-tabs [![Build Status](https://travis-ci.com/thoughtsunificator/domodel-tabs.svg?branch=master)](https://travis-ci.com/thoughtsunificator/domodel-tabs)
+# domodel-tabs
 
 Tabs system for [domodel](https://github.com/thoughtsunificator/domodel).
 
