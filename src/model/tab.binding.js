@@ -2,7 +2,10 @@ import { Binding } from "domodel"
 
 import TabEventListener from "./tab.event.js"
 
-export default class extends Binding {
+/**
+ * @global
+ */
+class TabBinding extends Binding {
 
 	/**
 	 * @param {object} properties
@@ -21,3 +24,5 @@ export default class extends Binding {
 	}
 
 }
+
+export default TabBinding
