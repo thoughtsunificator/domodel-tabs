@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>tab - Documentation</title>
+    <title>model/tabs.binding.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,62 +34,53 @@
 
 <div id="main">
     
-    <h1 class="page-title">tab</h1>
+    <h1 class="page-title">model/tabs.binding.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Binding } from "domodel"
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+import IndicatorModel from "./indicator.js"
+import TabModel from "./tab.js"
 
-            
-        
-        </div>
-    
+import IndicatorBinding from "./indicator.binding.js"
+import TabBinding from "./tab.binding.js"
 
-    
+import Tab from "../object/tab.js"
 
-    
+import TabsEventListener from "./tabs.event.js"
 
-    
-        <h3 class="subsection-title">Classes</h3>
+export default class extends Binding {
 
-        <dl>
-            <dt><a href="module-tab-Tab.html">Tab</a></dt>
-            <dd></dd>
-        </dl>
-    
-    
-    
+	/**
+	 * @param {object} properties
+	 * @param {Tabs}   properties.tabs
+	 */
+	constructor(properties) {
+		super(properties, new TabsEventListener(properties.tabs))
+	}
 
-     
+	onCreated() {
 
-    
+		const { tabs } = this.properties
 
-    
+		for(const tab of tabs.tabs) {
+			this.run(IndicatorModel(tab), { parentNode: this.identifier.indicators, binding: new IndicatorBinding({ tab }) })
+			this.run(TabModel, { parentNode: this.identifier.tabs, binding: new TabBinding({ tab }) })
+		}
 
-    
+	}
 
-    
-
-    
-</article>
-
-</section>
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

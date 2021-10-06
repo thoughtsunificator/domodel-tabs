@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>tab - Documentation</title>
+    <title>model/indicator.binding.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,62 +34,51 @@
 
 <div id="main">
     
-    <h1 class="page-title">tab</h1>
+    <h1 class="page-title">model/indicator.binding.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Binding } from "domodel"
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+export default class extends Binding {
 
-            
-        
-        </div>
-    
+	/**
+	 * @param {object} properties
+	 * @param {Tab}    properties.tab
+	 * @param {Tabs}   properties.tabs
+	 */
+	constructor(properties) {
+		super(properties)
+	}
 
-    
+	onCreated() {
 
-    
+		const { tab, tabs } = this.properties
 
-    
-        <h3 class="subsection-title">Classes</h3>
+		this.listen(tab, "set", () => {
+			this.root.classList.add("active")
+		})
 
-        <dl>
-            <dt><a href="module-tab-Tab.html">Tab</a></dt>
-            <dd></dd>
-        </dl>
-    
-    
-    
+		this.listen(tab, "unset", () => {
+			this.root.classList.remove("active")
+		})
 
-     
+		this.root.addEventListener("click", () => {
+			tabs.emit("tabSet", tab.name)
+		})
 
-    
+	}
 
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

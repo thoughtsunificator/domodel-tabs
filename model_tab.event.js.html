@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>tab - Documentation</title>
+    <title>model/tab.event.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,62 +34,37 @@
 
 <div id="main">
     
-    <h1 class="page-title">tab</h1>
+    <h1 class="page-title">model/tab.event.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { EventListener } from "domodel"
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+/**
+ * @global
+ */
+class TabEventListener extends EventListener {
 
-            
-        
-        </div>
-    
+	set() {
+		this.root.classList.add("active")
+	}
 
-    
+	unset() {
+		this.root.classList.remove("active")
+	}
 
-    
+}
 
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-tab-Tab.html">Tab</a></dt>
-            <dd></dd>
-        </dl>
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+export default TabEventListener
+</code></pre>
+        </article>
+    </section>
 
 
 

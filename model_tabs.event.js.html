@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>tab - Documentation</title>
+    <title>model/tabs.event.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,62 +34,63 @@
 
 <div id="main">
     
-    <h1 class="page-title">tab</h1>
+    <h1 class="page-title">model/tabs.event.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { EventListener } from "domodel"
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+/**
+ * @global
+ */
+class TabsEventListener extends EventListener {
 
-            
-        
-        </div>
-    
+	/**
+	 * @event EventListener#tabChanged
+	 * @property {Tab} tab
+	 */
 
-    
+	/**
+	 * @event EventListener#tabSet
+	 * @property {string} name
+	 */
+	tabSet(name) {
+		const { tabs } = this.properties
+		if(tabs.tab) {
+			tabs.emit("tabUnset", tabs.tab.name)
+		}
+		const tab = tabs.getTabByName(name)
+		tabs.tab = tab
+		tab.active = true
+		tab.emit("set")
+		tabs.emit("tabChanged", tab)
+	}
 
-    
+	/**
+	 * @event EventListener#tabUnset
+	 * @property {string} name
+	 */
+	tabUnset(name) {
+		const { tabs } = this.properties
+		const tab = tabs.getTabByName(name)
+		tab.active = false
+		tabs.tab = null
+		tab.emit("unset")
+		tabs.emit("tabChanged", null)
+	}
 
-    
-        <h3 class="subsection-title">Classes</h3>
+}
 
-        <dl>
-            <dt><a href="module-tab-Tab.html">Tab</a></dt>
-            <dd></dd>
-        </dl>
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+export default TabsEventListener
+</code></pre>
+        </article>
+    </section>
 
 
 
