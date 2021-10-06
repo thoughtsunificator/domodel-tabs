@@ -20,13 +20,15 @@ class Tab extends Observable {
 	}
 
 	/**
-	 * @return {string}
+	 * @readonly
+	 * @type {string}
 	 */
 	get name() {
 		return this._name
 	}
 
 	/**
+	 * @readonly
 	 * @type {object}
 	 */
 	get model() {
@@ -34,6 +36,7 @@ class Tab extends Observable {
 	}
 
 	/**
+	 * @readonly
 	 * @type {Binding}
 	 */
 	get binding() {
@@ -41,6 +44,7 @@ class Tab extends Observable {
 	}
 
 	/**
+	 * @readonly
 	 * @type {object}
 	 */
 	get properties() {
