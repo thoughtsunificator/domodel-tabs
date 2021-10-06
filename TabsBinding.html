@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>object/tab.js - Documentation</title>
+    <title>TabsBinding - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,84 +34,235 @@
 
 <div id="main">
     
-    <h1 class="page-title">object/tab.js</h1>
+    <h1 class="page-title">TabsBinding</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/** @module tab */
+        <h2>
+        TabsBinding
+        </h2>
+        
+    
+</header>
 
-import { Observable } from "domodel"
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-/**
-	* @memberof: module: tab
-	*/
-class Tab extends Observable {
+    
 
-	/**
-	 * @param  {string}  name
-	 * @param  {object}  model
-	 * @param  {Binding} binding
-	 */
-	constructor(name, model, binding, properties = {}) {
-		super()
-		this._name = name
-		this._model = model
-		this._binding = binding
-		this._properties = properties
-		this._active = false
-	}
+    <h4 class="name" id="TabsBinding"><span class="type-signature"></span>new TabsBinding<span class="signature">(properties)</span><span class="type-signature"></span></h4>
 
-	/**
-	 * @return {string}
-	 */
-	get name() {
-		return this._name
-	}
+    
 
-	/**
-	 * @type {object}
-	 */
-	get model() {
-		return this._model
-	}
 
-	/**
-	 * @type {Binding}
-	 */
-	get binding() {
-		return this._binding
-	}
 
-	/**
-	 * @type {object}
-	 */
-	get properties() {
-		return this._properties
-	}
 
-	/**
-	 * @type {boolean}
-	 */
-	get active() {
-		return this._active
-	}
+<dl class="details">
 
-	set active(active) {
-		this._active = active
-	}
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="model_tabs.binding.js.html">model/tabs.binding.js</a>, <a href="model_tabs.binding.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
 
-}
+    
 
-export default Tab
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tabs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Tabs</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
