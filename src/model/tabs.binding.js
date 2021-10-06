@@ -8,30 +8,21 @@ import TabBinding from "./tab.binding.js"
 
 import Tab from "../object/tab.js"
 
+import TabsEventListener from "./tabs.event.js"
+
 export default class extends Binding {
+
+	/**
+	 * @param {object} properties
+	 * @param {Tabs}   properties.tabs
+	 */
+	constructor(properties) {
+		super(properties, new TabsEventListener(properties.tabs))
+	}
 
 	onCreated() {
 
 		const { tabs } = this.properties
-
-		this.listen(tabs, "tab set", name => {
-			if(tabs.tab) {
-				tabs.emit("tab unset", tabs.tab.name)
-			}
-			const tab = tabs.getTabByName(name)
-			tabs.tab = tab
-			tab.active = true
-			tab.emit("set")
-			tabs.emit("tab changed", tab)
-		})
-
-		this.listen(tabs, "tab unset", name => {
-			const tab = tabs.getTabByName(name)
-			tab.active = false
-			tabs.tab = null
-			tab.emit("unset")
-			tabs.emit("tab changed", null)
-		})
 
 		for(const tab of tabs.tabs) {
 			this.run(IndicatorModel(tab), { parentNode: this.identifier.indicators, binding: new IndicatorBinding({ tab }) })

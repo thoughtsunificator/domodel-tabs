@@ -2,6 +2,15 @@ import { Binding } from "domodel"
 
 export default class extends Binding {
 
+	/**
+	 * @param {object} properties
+	 * @param {Tab}    properties.tab
+	 * @param {Tabs}   properties.tabs
+	 */
+	constructor(properties) {
+		super(properties)
+	}
+
 	onCreated() {
 
 		const { tab, tabs } = this.properties
@@ -15,7 +24,7 @@ export default class extends Binding {
 		})
 
 		this.root.addEventListener("click", () => {
-			tabs.emit("tab set", tab.name)
+			tabs.emit("tabSet", tab.name)
 		})
 
 	}

@@ -7,7 +7,7 @@ describe("tabs", () => {
 
 	it("instance", () => {
 		const tabs = new Tabs([])
-		assert.ok(tabs instanceof Observable)
+		assert.ok(Tabs.prototype instanceof Observable)
 		assert.ok(Array.isArray(tabs.tabs))
 		assert.strictEqual(tabs.tab, null)
 		assert.throws(() => {
