@@ -10,7 +10,10 @@ import Tab from "../object/tab.js"
 
 import TabsEventListener from "./tabs.event.js"
 
-export default class extends Binding {
+/**
+ * @global
+ */
+class TabsBinding extends Binding {
 
 	/**
 	 * @param {object} properties
@@ -32,3 +35,5 @@ export default class extends Binding {
 	}
 
 }
+
+export default TabsBinding

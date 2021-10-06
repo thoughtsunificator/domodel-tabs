@@ -1,6 +1,9 @@
 import { Binding } from "domodel"
 
-export default class extends Binding {
+/**
+ * @global
+ */
+class IndicatorBinding extends Binding {
 
 	/**
 	 * @param {object} properties
@@ -30,3 +33,5 @@ export default class extends Binding {
 	}
 
 }
+
+export default IndicatorBinding
