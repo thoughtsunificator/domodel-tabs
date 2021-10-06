@@ -27,7 +27,7 @@ describe("indicator.binding", () => {
 	})
 
 	it("instance", () => {
-		assert.ok(new IndicatorBinding() instanceof Binding)
+		assert.ok(IndicatorBinding.prototype instanceof Binding)
 	})
 
 	it("onCreated", () => {
@@ -65,7 +65,7 @@ describe("indicator.binding", () => {
 		const tabs = new Tabs([ tab ])
 		const binding = new IndicatorBinding({ tab, tabs })
 		rootBinding.run(IndicatorModel, { binding })
-		tabs.listen("tab set", name => {
+		tabs.listen("tabSet", name => {
 			assert.strictEqual(name, tab.name)
 			done()
 		})

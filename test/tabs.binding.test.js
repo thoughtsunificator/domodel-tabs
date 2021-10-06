@@ -29,7 +29,7 @@ describe("tabs.binding", () => {
 	})
 
 	it("instance", () => {
-		assert.ok(new TabsBinding() instanceof Binding)
+		assert.ok(TabsBinding.prototype instanceof Binding)
 	})
 
 	it("onCreated", () => {
@@ -61,9 +61,9 @@ describe("tabs.binding", () => {
 		const binding = new TabsBinding({ tabs })
 		rootBinding.run(TabsModel, { binding })
 		assert.strictEqual(tab.active, false)
-		tabs.emit("tab set", "test")
+		tabs.emit("tabSet", "test")
 		assert.strictEqual(tab.active, true)
-		tabs.emit("tab set", "cxzcxz")
+		tabs.emit("tabSet", "cxzcxz")
 		assert.strictEqual(tab.active, false)
 		assert.strictEqual(tab_.active, true)
 	})
@@ -75,10 +75,10 @@ describe("tabs.binding", () => {
 		const binding = new TabsBinding({ tabs })
 		rootBinding.run(TabsModel, { binding })
 		assert.strictEqual(tab.active, false)
-		tabs.emit("tab set", "test")
+		tabs.emit("tabSet", "test")
 		assert.strictEqual(tab.active, true)
 		assert.strictEqual(tab_.active, false)
-		tabs.emit("tab unset", "test")
+		tabs.emit("tabUnset", "test")
 		assert.strictEqual(tab.active, false)
 		assert.strictEqual(tab_.active, false)
 	})

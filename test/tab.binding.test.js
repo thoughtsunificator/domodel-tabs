@@ -29,7 +29,7 @@ describe("tab.binding", () => {
 	})
 
 	it("instance", () => {
-		assert.ok(new TabBinding() instanceof Binding)
+		assert.ok(TabBinding.prototype instanceof Binding)
 	})
 
 	it("onCreated", () => {

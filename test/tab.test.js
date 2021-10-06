@@ -8,7 +8,7 @@ describe("tab", () => {
 	it("instance", () => {
 		const model = { tagName: "div" }
 		const tab = new Tab("vcxvcsa", model, Binding, { test: "a" })
-		assert.ok(tab instanceof Observable)
+		assert.ok(Tab.prototype instanceof Observable)
 		assert.strictEqual(tab.name, "vcxvcsa")
 		assert.deepEqual(tab.model, model)
 		assert.ok(new tab.binding() instanceof Binding)
