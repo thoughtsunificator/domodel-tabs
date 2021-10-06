@@ -1,10 +1,8 @@
-/** @module tab */
-
 import { Observable } from "domodel"
 
 /**
-	* @memberof: module: tab
-	*/
+ * @global
+ */
 class Tab extends Observable {
 
 	/**
