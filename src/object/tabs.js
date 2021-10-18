@@ -14,11 +14,16 @@ class Tabs extends Observable {
 		this._tab = null
 	}
 
+	/**
+	 * @param   {string} name
+	 * @returns {Tab}
+	 */
 	getTabByName(name) {
 		return this.tabs.find(tab => tab.name === name)
 	}
 
 	/**
+	 * @readonly
 	 * @type {Tab[]}
 	 */
 	get tabs() {
