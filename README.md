@@ -22,16 +22,16 @@ import SecondTabBinding from "/model/second-tab.binding.js"
 
 export default class extends Binding {
 
-	onCreated() {
+  onCreated() {
 
-		const tab1 = new Tab("Tab 1", FirstTabModel, FirstTabBinding)
-		const tab2 = new Tab("Tab 2", SecondTabModel, SecondTabBinding)
+    const tab1 = new Tab("Tab 1", FirstTabModel, FirstTabBinding)
+    const tab2 = new Tab("Tab 2", SecondTabModel, SecondTabBinding)
 
-		const tabs = new Tabs([ tab1, tab2 ])
+    const tabs = new Tabs([ tab1, tab2 ])
 
-		Core.run(TabsModel, { parentNode: this.root, binding: new TabsBinding({ tabs }) })
+    Core.run(TabsModel, { parentNode: this.root, binding: new TabsBinding({ tabs }) })
 
-	}
+  }
 
 }
 ```
