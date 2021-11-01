@@ -36,7 +36,6 @@ class TabsEventListener extends EventListener {
 		tab.active = false
 		tabs.tab = null
 		tab.emit("unset")
-		tabs.emit("tabChanged", null)
 	}
 
 }
