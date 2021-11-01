@@ -6,12 +6,12 @@ import { EventListener } from "domodel"
 class TabsEventListener extends EventListener {
 
 	/**
-	 * @event EventListener#tabChanged
+	 * @event TabsEventListener#tabChanged
 	 * @property {Tab} tab
 	 */
 
 	/**
-	 * @event EventListener#tabSet
+	 * @event TabsEventListener#tabSet
 	 * @property {string} name
 	 */
 	tabSet(name) {
@@ -27,7 +27,7 @@ class TabsEventListener extends EventListener {
 	}
 
 	/**
-	 * @event EventListener#tabUnset
+	 * @event TabsEventListener#tabUnset
 	 * @property {string} name
 	 */
 	tabUnset(name) {
